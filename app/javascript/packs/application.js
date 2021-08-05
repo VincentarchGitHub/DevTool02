@@ -14,7 +14,7 @@ import "channels"
 
 
 
-import "bootstrap";
+
 import "./src/application.scss";
 global.$ = jQuery;
 

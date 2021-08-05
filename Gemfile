@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.7'
 #### custom gem area
 gem 'devise', '~> 4.2'
 gem 'simple_form', '~> 5.1'
-gem 'bootstrap', '~> 4.0'
+# gem 'bootstrap', '~> 4.0'
 gem 'trix-rails', require: 'trix'
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
 gem "mini_magick"
