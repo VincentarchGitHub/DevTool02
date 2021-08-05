@@ -1,0 +1,25 @@
+
+<%= form_with model: project do |form| %>
+  
+  <div class="m-5">
+    <div class="form-inputs">
+      <%= form.text_field :ref_num, class:'form-control string' %>
+      </br>
+      <%= form.text_field :postcode, class:'form-control string' %>
+      </br>
+      <%= form.label :thumbnail, class:'form-control' %>
+      <%= form.file_field :thumbnail %>
+      </br>
+      <%= form.label :banner, class:'form-control' %>
+      <%= form.file_field :banner %>
+      </br></br>
+      <div class="field">
+      <%= render 'layouts/redactor' %>
+      </div>
+    </div>
+    </br>
+    <div class="form-actions">
+      <%= form.button :submit %>
+    </div>
+  </div>
+<% end %>

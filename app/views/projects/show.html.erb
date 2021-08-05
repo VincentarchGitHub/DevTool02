@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ref num:</strong>
+  <%= @project.ref_num %>
+</p>
+
+<p>
+  <strong>Postcode:</strong>
+  <%= @project.postcode %>
+</p>
+
+
+
+<p>
+  <strong>Views:</strong>
+  <%= @project.views %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
