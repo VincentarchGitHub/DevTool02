@@ -5,20 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+
 
 User.create!(email: "vince@example.com",
     password: 'password',
     password_confirmation: "password",
     admin: true)
 
-#25.times do |i|
-    #post = Post.new
-    #post.title = Faker::Lorem.sentence(word_count: 3, random_words_to_add: 7)
-    #post.body = Faker::Lorem.paragraph_by_chars(number: 1500)
-    #post.user = User.first
-    #post.thumbnail.attach(io: open("https://picsum.photos/1920/1080"), filename: "#{i}_thumbnail.jpg")
-    #post.banner.attach(io: open("https://picsum.photos/1920/1080"), filename: "#{i}_banner.jpg")
-    #post.views = Faker::Number.between(from: 1, to: 5000)
-    #post.save
 
-#end
+
+25.times do |i|
+    project = Project.new
+    project.ref_num = Faker::Lorem.paragraph_by_chars(number: 5)
+    project.postcode = Faker::Lorem.paragraph_by_chars(number: 5)
+    project.body = Faker::Lorem.paragraph_by_chars(number: 1500)
+    project.user = User.first
+    project.thumbnail.attach(io: URI.parse("https://picsum.photos/1920/1080").open, filename: "#{i}_thumbnail.jpg")
+    project.banner.attach(io: URI.parse("https://picsum.photos/1920/1080").open, filename: "#{i}_banner.jpg")
+    project.views = Faker::Number.between(from: 1, to: 5000)
+    project.save
+
+end

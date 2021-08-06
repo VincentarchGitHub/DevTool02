@@ -1,33 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="container p-5">
+    <div class="row justify-content-center">
+        <div class="digg_pagination">
+            <%= will_paginate @projects, :container => false %>
+        </div>
+    </div>
+</br>
 
-<h1>Projects</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Ref num</th>
-      <th>Postcode</th>
-      <th>Views</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.ref_num %></td>
-        <td><%= project.postcode %></td>
-        <td><%= project.views %></td>
-        <td><%= project.user_id %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="row">
+        <div class="card mb-3">
+            <img class="card-img-top" src="<%= url_for project.optimized_image(project.thumbnail, 586, 180) %>" alt="Blog Project Image Card" />
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= link_to project.ref_num, project %>
+                </h5>
+                <p class="card-text">
+                    <%= project.body.to_plain_text.truncate_words(50) %>
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        <%= project.updated_at.strftime("%A, %B %e, %Y") %> by
+                        <%= project.user.username %> | <%= pluralize(project.views, "View") %> | 0 comments
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+<div class="container p-2">
+    <div class="row justify-content-center">
+        <div class="digg_pagination">
+            <%= will_paginate @projects, :container => false %>
+        </div>
+    </div>

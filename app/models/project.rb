@@ -9,11 +9,11 @@ class Project < ApplicationRecord
   validates :ref_num, presence: true
   validates :postcode, presence: true
 
-  #self.per_page = 10
-  #extend FriendlyId
-  #friendly_id :title, use: :slugged
+  self.per_page = 10
+  extend FriendlyId
+  friendly_id :ref_num, use: :slugged
 
   def optimized_image(image,x,y)
-    return image.variant(resize_to_fill: [x, y]).processed
+    return image.variant(resize_to_fill: [x, y])#.processed
   end
 end

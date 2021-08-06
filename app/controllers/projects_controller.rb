@@ -5,8 +5,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all.order("created_at DESC")
-    #.paginate(page: params[:page])
+    @projects = Project.all.order("created_at DESC").paginate(page: params[:page])
   end
 
   # GET /projects/1 or /projects/1.json
@@ -65,7 +64,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = Project.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '2.7.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 #### custom gem area
 gem 'devise', '~> 4.2'
@@ -31,8 +31,13 @@ gem 'simple_form', '~> 5.1'
 # gem 'bootstrap', '~> 4.0'
 gem 'trix-rails', require: 'trix'
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
-gem "mini_magick"
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'data_migrate', '~> 1.2'
+gem 'rmagick'
+gem 'rvm', '~> 1.11', '>= 1.11.3.9'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'will_paginate'
+gem 'friendly_id'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.7', '>= 1.7.7', require: false
