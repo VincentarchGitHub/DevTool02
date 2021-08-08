@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_100524) do
+ActiveRecord::Schema.define(version: 2021_08_06_155646) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,20 @@ ActiveRecord::Schema.define(version: 2021_08_06_100524) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "work_stage"
+    t.text "description"
+    t.boolean "published"
+    t.datetime "published_at"
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_posts_on_project_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "ref_num"
     t.string "postcode"
@@ -88,5 +102,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_100524) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "projects"
+  add_foreign_key "posts", "users"
   add_foreign_key "projects", "users"
 end
