@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :user, :project
 
   has_many :elements
+  has_one_attached :header_image
 
   validates_presence_of :title, :work_stage, :description
 

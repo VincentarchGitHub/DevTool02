@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_141827) do
     t.string "title"
     t.string "work_stage"
     t.text "description"
-    t.boolean "published"
+    t.boolean "published", default: true
     t.datetime "published_at"
     t.integer "user_id", null: false
     t.integer "project_id", null: false
