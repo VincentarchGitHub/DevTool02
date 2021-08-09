@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :project
+  has_many :comments, as: :commentable, dependent: :destroy
 
   accepts_nested_attributes_for :user, :project
 

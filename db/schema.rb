@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_09_141827) do
+ActiveRecord::Schema.define(version: 2021_08_09_193112) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -50,9 +50,20 @@ ActiveRecord::Schema.define(version: 2021_08_09_141827) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "edit_history", default: ""
+    t.integer "commentable_id"
+    t.string "commentable_type"
+    t.integer "user_id", null: false
+    t.boolean "reply", default: false
+    t.integer "comment_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "elements", force: :cascade do |t|
     t.string "element_type"
-    t.text "content"
     t.integer "post_id", null: false
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
@@ -75,12 +86,13 @@ ActiveRecord::Schema.define(version: 2021_08_09_141827) do
     t.string "title"
     t.string "work_stage"
     t.text "description"
-    t.boolean "published", default: true
+    t.boolean "published"
     t.datetime "published_at"
     t.integer "user_id", null: false
     t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "views", default: 0
     t.index ["project_id"], name: "index_posts_on_project_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -106,12 +118,14 @@ ActiveRecord::Schema.define(version: 2021_08_09_141827) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.integer "number_of_comments", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "elements", "posts"
   add_foreign_key "posts", "projects"
   add_foreign_key "posts", "users"

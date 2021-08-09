@@ -11,6 +11,14 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    views = @post.views + 1
+    @post.update(views: views)
+    @comments = @post.comments.order('created_at DESC')
+
+    @num_comments = @post.comments.count
+    @post.comments.each do |comment|
+      @num_comments += comment.comments.count
+    end
   end
 
   # GET /posts/new
