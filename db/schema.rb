@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_155646) do
+ActiveRecord::Schema.define(version: 2021_08_09_141827) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2021_08_06_155646) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "elements", force: :cascade do |t|
+    t.string "element_type"
+    t.text "content"
+    t.integer "post_id", null: false
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_elements_on_post_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -102,6 +112,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_155646) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "elements", "posts"
   add_foreign_key "posts", "projects"
   add_foreign_key "posts", "users"
   add_foreign_key "projects", "users"

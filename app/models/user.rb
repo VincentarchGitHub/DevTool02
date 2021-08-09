@@ -6,7 +6,9 @@ class User < ApplicationRecord
   
   has_many :projects
   has_many :posts
-  
+
+  accepts_nested_attributes_for :projects, :posts
+
   def username
     return email.split("@")[0].capitalize
   end       

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  
   root 'projects#index'
   get 'about', to: 'pages#about'
   
   devise_for :users
 
   resources :projects do
-    resources :posts
+    resources :posts do
+      resources :elements
+    end 
   end 
   
   

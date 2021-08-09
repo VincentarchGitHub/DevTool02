@@ -1,6 +1,9 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_many :posts
+  has_many :posts, dependent: :destroy
+
+  accepts_nested_attributes_for :user, :posts
+  
   # Active Storage from Rails 5
   has_one_attached :thumbnail
   has_one_attached :banner

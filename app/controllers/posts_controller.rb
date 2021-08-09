@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :set_project
   before_action :set_post, only: %i[:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :is_admin!, except: [:index, :show]
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @element = @post.elements.build
   end
 
   # POST /posts or /posts.json
@@ -60,13 +62,15 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = Project.posts.find(params[:project_id])
+    end    
+    
     def set_post
-      @post = Post.find(params[:id])
+      @post = @project.posts.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :work_stage, :description, :user_id, :project_id)
+      params.require(:post).permit(:title, :work_stage, :description, :header_image)
     end
 end

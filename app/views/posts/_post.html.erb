@@ -1,0 +1,13 @@
+<%= link_to project_post_path(post), class: 'text-decoration-none' do %>
+    <div class="col-md-6 col-lg-4">
+        <div class="card post-card">
+            <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>)"></div>
+            <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= post.title %></h5>
+            <h3 class="card-title"><%= post.work_stage %></h3>
+            <p class="card-text"><%= truncate(post.description, length: 250) %></p>
+            <%= link_to "View Post", project_post_path(post), class: 'btn btn-primary mt-auto' %>
+            </div>
+        </div>
+    </div>
+<% end %>
