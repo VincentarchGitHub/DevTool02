@@ -1,3 +1,23 @@
+<!-- temp navbar replacement controls -->
+<% if current_user %>
+    <%= link_to 'New Project', new_project_path %>
+    <%= link_to 'Account Settings', edit_user_registration_path %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    
+<% else %>
+    <%= link_to 'Sign up', new_user_registration_path %>
+    <%= link_to 'Log in', new_user_session_path %>
+    
+<% end %>
+
+
+
+
+
+
+
+<!-- real page below -->
+
 <div class="container p-5">
     <div class="row justify-content-center">
         <div class="digg_pagination">
@@ -17,12 +37,7 @@
                 <p class="card-text">
                     <%= project.body.to_plain_text.truncate_words(50) %>
                 </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        <%= project.updated_at.strftime("%A, %B %e, %Y") %> by
-                        <%= project.user.username %> | <%= pluralize(project.views, "View") %> | 0 comments
-                    </small>
-                </p>
+                
             </div>
         </div>
     </div>

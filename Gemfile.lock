@@ -107,6 +107,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.10.0)
+    ffi (1.15.3)
     ffi (1.15.3-x64-mingw32)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
@@ -132,6 +133,8 @@ GEM
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.0-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.12.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     public_suffix (4.0.6)
@@ -184,6 +187,8 @@ GEM
     rvm (1.11.3.9)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -252,6 +257,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (~> 1.7, >= 1.7.7)
@@ -284,7 +290,7 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.7.3p183
 
 BUNDLED WITH
    2.2.21

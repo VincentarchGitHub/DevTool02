@@ -9,10 +9,12 @@ require 'faker'
 
 
 
-User.create!(email: "vince@example.com",
-    password: 'password',
-    password_confirmation: "password",
-    admin: true)
+User.create!(username: 'Vince',
+            email: "vince@example.com",
+            password: 'password',
+            password_confirmation: "password",
+            admin: true)
+
 
 
 

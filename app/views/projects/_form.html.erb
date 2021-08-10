@@ -3,19 +3,19 @@
   
   <div class="m-5">
     <div class="form-inputs">
-      <%= form.text_field :ref_num, class:'form-control string' %>
+      <%= form.text_field :ref_num, class:'form-control string', placeholder:'Reference Number' %>
       </br>
-      <%= form.text_field :postcode, class:'form-control string' %>
+      <%= form.text_field :postcode, class:'form-control string', placeholder:'Postcode' %>
       </br>
       <%= form.label :thumbnail, class:'form-control' %>
       <%= form.file_field :thumbnail %>
-      </br>
+      </br></br>
       <%= form.label :banner, class:'form-control' %>
       <%= form.file_field :banner %>
       </br></br>
       <div class="field">
       
-      <%= form.rich_text_area :body %>
+      <%= form.rich_text_area :body, placeholder:'Project description...' %>
       </div>
     </div>
     </br>

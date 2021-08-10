@@ -22,13 +22,14 @@
 <% if current_user %>
   <h4 class='d-flex justify-content-between mb-4'>
     <span>Posts</span>
-    <% link_to 'New Post', new_post_path(@project), class: 'btn btn-primary' %>
+    <%= link_to 'New Post', new_post_path(@project), class: 'btn btn-primary' %>
   </h4>
 <% else %>
   <h4 class='d-flex justify-content-between mb-4'>
     <span>Posts</span>
   </h4>
 <% end %>
+
 
 
 <div class="container">
