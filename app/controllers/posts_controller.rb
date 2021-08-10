@@ -1,16 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_project
+  before_action :set_project, except: [:index, :show, :edit]
   before_action :set_post, only: %i[:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :is_admin!, except: [:index, :show]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order('created_at DESC')
+    
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
     views = @post.views + 1
     @post.update(views: views)
     @comments = @post.comments.order('created_at DESC')
@@ -28,18 +30,19 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find(params[:id])
     @element = @post.elements.build
   end
 
   # POST /posts or /posts.json
   def create
-    @project = Project.find_by_id(params[:project_id])    
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params.merge(project: @project))
+
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to project_path(@project), notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to edit_post_path(@post) }
+        format.json { render :edit, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -71,7 +74,7 @@ class PostsController < ApplicationController
 
   private
     def set_project
-      @project = Project.posts.find(params[:project_id])
+      @project = Project.friendly.find(params[:project_id])
     end    
     
     def set_post
@@ -81,4 +84,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :work_stage, :description, :header_image)
     end
+  
 end

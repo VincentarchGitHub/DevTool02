@@ -6,7 +6,7 @@
   <div class="row">
     <div class="jumbotron" style="width:100%">
       <h1 class="display-4">
-        <%= link_to @project.ref_num, root_path %>
+        <%= @project.ref_num %>
       </h1>
       <p class="lead">
         <%= @project.updated_at.strftime("%A, %B %e, %Y") %> by <%= @project.user.username %> | <%= pluralize(@project.views, "View") %>
@@ -22,7 +22,7 @@
 <% if current_user %>
   <h4 class='d-flex justify-content-between mb-4'>
     <span>Posts</span>
-    <%= link_to 'New Post', new_post_path(@project), class: 'btn btn-primary' %>
+    <%= link_to 'New Post', new_project_post_path(@project), class: 'btn btn-primary' %>
   </h4>
 <% else %>
   <h4 class='d-flex justify-content-between mb-4'>
@@ -34,8 +34,7 @@
 
 <div class="container">
   <div>
-    <% @posts.each do |post| %>
-      <%= render post %>
-    <% end %>
+    <%= render "posts/sindex" %>
+    
   </div>
 </div>

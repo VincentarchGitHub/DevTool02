@@ -3,10 +3,26 @@
         <div class="card post-card">
             <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>)"></div>
             <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= post.title %></h5>
-            <h3 class="card-title"><%= post.work_stage %></h3>
-            <p class="card-text"><%= truncate(post.description, length: 250) %></p>
-            <%= link_to "View Post", project_post_path(post), class: 'btn btn-primary mt-auto' %>
+                <h5 class="card-title"><%= post.title %></h5>
+                <h3 class="card-title"><%= post.work_stage %></h3>
+                <p class="card-text"><%= truncate(post.description, length: 250) %></p>
+                
+                <p class="card-text">
+                    <small class="text-muted">
+                        <%= post.updated_at.strftime("%A, %B %e, %Y") %> by
+                        <%= post.user.username %> | <%= pluralize(post.views, "View") %> |
+                        <% @num_comments = post.comments.count %>
+                        <% post.comments.each do |comment| %>
+                        <% @num_comments += comment.comments.count %>
+                        <% end %>
+                        <%= pluralize(@num_comments, "Comment") %> |
+                        <% if current_user && (current_user.admin || current.user == post.user)%>
+                        <%= link_to "Delete", post, method: :delete %>
+                        <% end %>
+                    </small>
+                </p>
+                
+                <%= link_to "View Post", project_post_path(post), class: 'btn btn-primary mt-auto' %>
             </div>
         </div>
     </div>

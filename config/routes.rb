@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
   resources :projects do
-    resources :posts
+    resources :posts 
   end
 
   resources :posts do
     resources :elements
-  end 
-  
-  resources :posts do
     resources :comments
-  end 
-
+  end
+  
   resources :comments do
     resources :comments
   end 

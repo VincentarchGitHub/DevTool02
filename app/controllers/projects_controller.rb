@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   def show
     views = @project.views + 1
     @project.update(views: views)
-    @posts = @project.posts.order("created_at DESC")
+    @posts = @project.posts.order("created_at DESC").paginate(page: params[:page])
   end
 
   # GET /projects/new
