@@ -1,6 +1,8 @@
 <div class="comment-container" id="comment-<%= comment.id %>">
     <div class="container">
         <%= render 'comments/comments', comment: comment, local: Comment.new %>
+
+        
         <% unless comment.reply %>
         <div class="row">
             <div class="col-4">

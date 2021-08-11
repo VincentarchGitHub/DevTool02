@@ -38,6 +38,7 @@ gem 'rvm', '~> 1.11', '>= 1.11.3.9'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'will_paginate'
 gem 'friendly_id'
+gem 'activeadmin'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.7', '>= 1.7.7', require: false

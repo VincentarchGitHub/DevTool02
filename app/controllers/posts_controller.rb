@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_project, except: [:index, :show, :edit]
+  before_action :set_project, except: [:index, :show, :edit, :update, :destroy]
   before_action :set_post, only: %i[:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :is_admin!, except: [:index, :show]
@@ -52,6 +52,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    @post = current_user.posts.build(post_params.merge(project: @project))
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: "Post was successfully updated." }
@@ -65,9 +66,11 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
+    
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to project_path, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end

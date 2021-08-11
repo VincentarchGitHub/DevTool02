@@ -1,22 +1,3 @@
-<!-- temp navbar replacement controls -->
-<% if current_user %>
-    <%= link_to 'New Project', new_project_path %>
-    <%= link_to 'Account Settings', edit_user_registration_path %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    
-<% else %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    <%= link_to 'Log in', new_user_session_path %>
-    
-<% end %>
-
-
-
-
-
-
-
-<!-- real page below -->
 
 <div class="container p-5">
     <div class="row justify-content-center">

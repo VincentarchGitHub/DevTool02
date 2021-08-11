@@ -16,7 +16,7 @@ User.create!(username: 'Vince',
             admin: true)
 
 
-
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 25.times do |i|
     project = Project.new

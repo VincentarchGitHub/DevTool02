@@ -3,30 +3,19 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
-
-// Rails.start()
-// Turbolinks.start()
-// ActiveStorage.start()
-
-
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
 
 
 import "./src/application.scss";
 global.$ = jQuery;
 
-require("trix")
+const Trix = require("trix")
 require("@rails/actiontext")
-
+import "controllers"
 //= require trix
-
-
-
-
-
 
 document.addEventListener('turbolinks:load', () => {
     document.addEventListener('click', () => {
@@ -48,4 +37,4 @@ document.addEventListener('turbolinks:load', () => {
       })
     
     })
-import "controllers"
+

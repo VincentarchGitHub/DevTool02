@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, authentication_keys: [:username]
   has_many :projects
   has_many :posts
   has_many :comments, dependent: :destroy
@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   attr_writer :login
 
+ 
   def validate_username
     errors.add(:username, :invalid) if User.where(email: username).exists?
   end
