@@ -54,11 +54,11 @@
 </div>
 
 <div class="container">
-    <%= render 'comments/form', commentable: @post, local: Comment.new %>
+    <% render 'comments/form', commentable: @post, local: Comment.new %>
 
     <div id="comment-pane">
-        <% @comments.each do |comment| %>
-        <%= render comment %>
+        <% @post.comments.each do |comment| %>
+        <% render comment %>
         <% end %>
     </div>
 </div>

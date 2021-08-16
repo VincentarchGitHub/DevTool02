@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_project, except: [:index, :show, :edit, :update, :destroy]
+  #before_action :set_project, except: [:index, :show, :edit, :update, :destroy]
   before_action :set_post, only: %i[:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :is_admin!, except: [:index, :show]
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @project_id = params[:project_id]
   end
 
   # GET /posts/1/edit
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = current_user.posts.build(post_params.merge(project: @project))
+    @post = current_user.posts.build(post_params)
 
 
     respond_to do |format|
@@ -52,13 +53,14 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    @post = current_user.posts.build(post_params.merge(project: @project))
+    @post = Post.find(params[:id])
+    @element = @post.elements.build
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated." }
+        format.html { redirect_to  @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -76,16 +78,16 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_project
-      @project = Project.friendly.find(params[:project_id])
-    end    
+    #def set_project
+    #  @project = Projecst.friendly.find(params[:project_id])
+    #end    
     
     def set_post
-      @post = @project.posts.find(params[:id])
+      @post = Post.find(params[:id])
     end
 
     def post_params
-      params.require(:post).permit(:title, :work_stage, :description, :header_image)
+      params.require(:post).permit(:title, :work_stage, :description, :header_image, :project_id)
     end
   
 end

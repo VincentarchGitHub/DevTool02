@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many :elements
   has_one_attached :header_image
 
-  has_rich_text :body
+  has_rich_text :body 
 
   validates_presence_of :title, :work_stage, :description
 

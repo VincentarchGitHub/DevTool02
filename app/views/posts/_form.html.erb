@@ -1,9 +1,10 @@
 
-<%= simple_form_for([@project, @post]) do |f| %>
+<%= simple_form_for(@post) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.hidden_field :project_id, value: @project_id %>
     <%= f.input :title %>
     <%= f.input :work_stage %>
     <%= f.input :description %>

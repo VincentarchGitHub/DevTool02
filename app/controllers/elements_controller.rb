@@ -20,6 +20,8 @@ class ElementsController < ApplicationController
   # PATCH/PUT /elements/1 or /elements/1.json
   def update
     @element.update(element_params)
+
+    redirect_to edit_post_path(@element.post)
   end
 
   # DELETE /elements/1 or /elements/1.json
